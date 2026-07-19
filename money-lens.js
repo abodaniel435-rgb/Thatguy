@@ -45,10 +45,13 @@ function lensDestinationMarkup(destination, converted) {
 function renderMoneyLens(results, sourceAmount, sourceCurrency) {
     const container = document.getElementById("lensDestinations");
     const best = [...results].sort((a, b) => (b.converted / b.destination.meal) - (a.converted / a.destination.meal))[0];
+    const bestMeals = Math.floor(best.converted / best.destination.meal);
+    const bestRides = Math.floor(best.converted / best.destination.ride);
+    const bestCoffees = Math.floor(best.converted / best.destination.coffee);
     container.innerHTML = results.map(({ destination, converted }) => lensDestinationMarkup(destination, converted)).join("");
     document.getElementById("lensRevealTitle").textContent = `${moneyLensFormat(sourceAmount, sourceCurrency)} can create six very different days.`;
     document.getElementById("lensRateText").textContent = `Live snapshot · ${sourceCurrency} sent worldwide`;
-    document.getElementById("lensSpotlightText").innerHTML = `In <strong>${best.destination.city}</strong>, your ${moneyLensFormat(sourceAmount, sourceCurrency)} can cover approximately <strong>${Math.floor(best.converted / best.destination.meal)} local meals</strong> — the strongest meal-for-money result in this lens.`;
+    document.getElementById("lensSpotlightText").innerHTML = `In <strong>${best.destination.city}</strong>, your ${moneyLensFormat(sourceAmount, sourceCurrency)} can unlock <span class="lens-spotlight-outcome"><b>${bestMeals}</b> local meals</span><span class="lens-spotlight-outcome"><b>${bestRides}</b> city rides</span><span class="lens-spotlight-outcome"><b>${bestCoffees}</b> coffee stops</span>.`;
     document.getElementById("lensSpotlightMetric").innerHTML = `<span>Best value</span><strong>${best.destination.emoji} ${best.destination.city}</strong>`;
     moneyLensResults = results;
 }
