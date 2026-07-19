@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrenSee - Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260719-money-lens">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container" style="max-width: 1120px;">
+        <div class="auth-layout">
+            <section class="auth-hero">
+                <div class="auth-hero-eyebrow">Currency Intelligence Platform</div>
+                <h2>Track exchange rates, monitor targets, and keep your market view in one place.</h2>
+                <p>
+                    CurrenSee helps finance teams, traders, and cross-border businesses stay on top of conversion activity,
+                    target alerts, and market headlines with a clean, mobile-friendly workspace.
+                </p>
+
+                <div class="auth-trust-grid">
+                    <div class="auth-trust-card">
+                        <span class="auth-trust-icon auth-trust-icon-blue" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 4a4 4 0 0 1 4 4v2.5c0 .8.24 1.58.68 2.24L18 15H6l1.32-2.26c.44-.66.68-1.44.68-2.24V8a4 4 0 0 1 4-4Z" />
+                                <path d="M10 18a2 2 0 0 0 4 0" />
+                            </svg>
+                        </span>
+                        <strong>Alerts and monitoring</strong>
+                        <span>Create rate alerts, review live prices, and keep a record of the signals you care about.</span>
+                    </div>
+                    <div class="auth-trust-card">
+                        <span class="auth-trust-icon auth-trust-icon-cyan" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 7h8M7 17h10" />
+                                <path d="M15 5l3 2-3 2M9 15l-3 2 3 2" />
+                            </svg>
+                        </span>
+                        <strong>Conversion workflow</strong>
+                        <span>Convert across major currencies, browse supported pairs, and keep a searchable history.</span>
+                    </div>
+                    <div class="auth-trust-card">
+                        <span class="auth-trust-icon auth-trust-icon-green" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 18h10" />
+                                <path d="M8 6h8a2 2 0 0 1 2 2v6H6V8a2 2 0 0 1 2-2Z" />
+                                <path d="M10 18v-2m4 2v-2" />
+                            </svg>
+                        </span>
+                        <strong>Mobile-ready interface</strong>
+                        <span>Use the dashboard, converter, alerts, and help center cleanly on desktop and mobile.</span>
+                    </div>
+                    <div class="auth-trust-card">
+                        <span class="auth-trust-icon auth-trust-icon-gold" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 17l5-5 4 4 7-8" />
+                                <path d="M20 8v5h-5" />
+                            </svg>
+                        </span>
+                        <strong>Commercial roadmap</strong>
+                        <span>This release is being prepared for professional deployment, legal pages, and product packaging.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="text-center mb-4">
+                    <h1 class="auth-logo">CurrenSee</h1>
+                    <p class="auth-tagline">Your smart currency companion</p>
+                </div>
+
+                <div class="auth-card">
+                    <ul class="nav nav-tabs auth-tabs" id="authTabs">
+                        <li class="nav-item">
+                            <button class="nav-link active w-100" id="loginTab" data-bs-toggle="tab" data-bs-target="#loginPane">Login</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link w-100" id="registerTab" data-bs-toggle="tab" data-bs-target="#registerPane">Register</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link w-100" id="resetTab" data-bs-toggle="tab" data-bs-target="#resetPane">Reset Password</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content p-4">
+                        <div class="tab-pane fade show active" id="loginPane">
+                            <form id="loginForm">
+                                <div class="mb-3">
+                                    <label class="form-label auth-label">Email Address</label>
+                                    <input type="email" id="loginEmail" class="form-control auth-input" placeholder="you@email.com" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label auth-label">Password</label>
+                                    <input type="password" id="loginPassword" class="form-control auth-input" placeholder="Enter your password" required>
+                                </div>
+                                <div class="text-end mb-3">
+                                    <a href="#" id="goResetPassword" class="auth-switch">Forgot password?</a>
+                                </div>
+                                <div id="loginError" class="alert alert-danger d-none"></div>
+                                <div id="loginSuccess" class="alert alert-success d-none"></div>
+                                <button type="submit" class="btn btn-auth w-100">Login</button>
+                                <p class="text-center mt-3 auth-switch">Do not have an account? <a href="#" id="goRegister">Create one</a></p>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="registerPane">
+                            <form id="registerForm">
+                                <div class="mb-3">
+                                    <label class="form-label auth-label">Full Name</label>
+                                    <input type="text" id="regName" class="form-control auth-input" placeholder="John Doe" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label auth-label">Email Address</label>
+                                    <input type="email" id="regEmail" class="form-control auth-input" placeholder="you@email.com" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label auth-label">Password</label>
+                                    <input type="password" id="regPassword" class="form-control auth-input" placeholder="Minimum 6 characters" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label auth-label">Confirm Password</label>
+                                    <input type="password" id="regConfirm" class="form-control auth-input" placeholder="Repeat password" required>
+                                </div>
+                                <div id="registerError" class="alert alert-danger d-none"></div>
+                                <div id="registerSuccess" class="alert alert-success d-none"></div>
+                                <button type="submit" class="btn btn-auth w-100">Create Account</button>
+                                <p class="text-center mt-3 auth-switch">Already have an account? <a href="#" id="goLogin">Sign in</a></p>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="resetPane">
+                            <form id="resetPasswordForm">
+                                <div class="mb-3">
+                                    <label class="form-label auth-label">Account Email</label>
+                                    <input type="email" id="resetEmail" class="form-control auth-input" placeholder="you@email.com" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label auth-label">New Password</label>
+                                    <input type="password" id="resetPassword" class="form-control auth-input" placeholder="Minimum 6 characters" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label auth-label">Confirm New Password</label>
+                                    <input type="password" id="resetConfirm" class="form-control auth-input" placeholder="Repeat new password" required>
+                                </div>
+                                <div id="resetError" class="alert alert-danger d-none"></div>
+                                <div id="resetSuccess" class="alert alert-success d-none"></div>
+                                <button type="submit" class="btn btn-auth w-100">Reset Password</button>
+                                <p class="text-center mt-3 auth-switch">Remembered it? <a href="#" id="backToLogin">Back to login</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="site-footer" style="padding: 18px 0 0; margin: 0;">
+                    <div class="site-footer-card">
+                        <p class="site-footer-copy">Copyright 2026 CurrenSee. Product preview for commercial rollout.</p>
+                        <div class="site-footer-links">
+                            <a href="about.html">About</a>
+                            <a href="pricing.html">Pricing</a>
+                            <a href="privacy.html">Privacy</a>
+                            <a href="terms.html">Terms</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="backend.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

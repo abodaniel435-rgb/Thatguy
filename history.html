@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrenSee - History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260719-money-lens">
+</head>
+<body class="app-body">
+
+    <nav class="app-navbar">
+        <div class="nav-brand">CurrenSee</div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+        </button>
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+                <a href="converter.html" class="nav-item">Converter</a>
+                <a href="money-lens.html" class="nav-item">Money Lens</a>
+                <a href="history.html" class="nav-item active">History</a>
+                <a href="alerts.html" class="nav-item">Alerts</a>
+                <a href="news.html" class="nav-item">News</a>
+                <a href="help.html" class="nav-item">Help</a>
+            </div>
+            <div class="nav-user">
+                <span class="plan-badge free-badge" data-plan-name>Free</span>
+                <span id="navUsername">User</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="app-main">
+        <h2 class="page-title">Conversion History</h2>
+        <p class="page-sub">Review, search, and export your recorded conversion activity.</p>
+        <div id="historyPlanNotice" class="pro-notice mb-4 d-none"></div>
+
+        <div class="stats-grid mb-4">
+            <div class="stat-card">
+                <div class="stat-icon">#</div>
+                <div class="stat-info">
+                    <p class="stat-label">Total Conversions</p>
+                    <h3 class="stat-value" id="historyTotal">0</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">FX</div>
+                <div class="stat-info">
+                    <p class="stat-label">Most Used Pair</p>
+                    <h3 class="stat-value" id="mostUsedPair">-</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">T</div>
+                <div class="stat-info">
+                    <p class="stat-label">Last Conversion</p>
+                    <h3 class="stat-value" id="lastConversion" style="font-size:1rem">-</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">X</div>
+                <div class="stat-info">
+                    <p class="stat-label">Clear All</p>
+                    <button class="btn btn-sm btn-danger mt-1" onclick="clearHistory()">Clear History</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-card mb-4">
+            <div class="d-flex gap-3 flex-wrap">
+                <input type="text" id="historySearch" class="form-control dash-input" placeholder="Search by currency" style="max-width:300px">
+                <select id="historyFilter" class="form-select dash-input" style="max-width:200px">
+                    <option value="all">All Pairs</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="NGN">NGN</option>
+                    <option value="JPY">JPY</option>
+                </select>
+                <button class="btn btn-primary" onclick="exportHistory()">Export CSV</button>
+            </div>
+        </div>
+
+        <div class="dash-card">
+            <h4 class="dash-card-title">Transaction Log</h4>
+            <div class="table-responsive">
+                <table class="table history-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Amount</th>
+                            <th>Result</th>
+                            <th>Rate</th>
+                            <th>Date and Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody"></tbody>
+                </table>
+            </div>
+            <div id="historyEmpty" class="text-center py-5 d-none">
+                <p class="text-muted">No conversion history yet. Start with a live conversion.</p>
+                <a href="converter.html" class="btn btn-primary mt-2">Go to Converter</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-card">
+            <p class="site-footer-copy">CurrenSee keeps your recent conversion workflow visible and exportable.</p>
+            <div class="site-footer-links">
+                <a href="about.html">About</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="backend.js"></script>
+    <script src="script.js"></script>
+    <script src="history.js"></script>
+</body>
+</html>

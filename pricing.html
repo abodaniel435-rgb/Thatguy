@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrenSee - Pricing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260719-money-lens">
+</head>
+<body class="app-body">
+    <main class="app-main marketing-section pricing-page">
+        <section class="marketing-hero pricing-hero">
+            <span class="section-kicker">CurrenSee Pro</span>
+            <h1>Upgrade when exchange rates become part of your work.</h1>
+            <p>Keep basic conversion free, then unlock the tracking tools serious users need: unlimited alerts, full history, exports, Bitcoin monitoring, and business-ready records.</p>
+        </section>
+
+        <section class="pricing-grid">
+            <article class="pricing-card">
+                <div class="pricing-card-head">
+                    <span class="plan-badge free-badge">Free</span>
+                    <h2>Starter</h2>
+                    <p>For quick checks and casual conversion.</p>
+                </div>
+                <div class="pricing-price">
+                    <strong>₦0</strong>
+                    <span>/ month</span>
+                </div>
+                <ul class="pricing-list">
+                    <li>Currency and Bitcoin converter</li>
+                    <li>Latest 5 conversion records</li>
+                    <li>2 active rate alerts</li>
+                    <li>Basic dashboard and market news</li>
+                    <li>Manual history review</li>
+                </ul>
+                <a href="dashboard.html" class="btn btn-outline-primary w-100">Continue Free</a>
+            </article>
+
+            <article class="pricing-card pricing-card-featured">
+                <div class="pricing-card-head">
+                    <span class="plan-badge pro-badge">Pro Monthly</span>
+                    <h2>Pro</h2>
+                    <p>For traders, freelancers, crypto users, and businesses that watch rates daily.</p>
+                </div>
+                <div class="pricing-price">
+                    <strong>₦5,000</strong>
+                    <span>/ month</span>
+                </div>
+                <ul class="pricing-list">
+                    <li>Unlimited conversion history</li>
+                    <li>Unlimited currency and Bitcoin alerts</li>
+                    <li>CSV export for business records</li>
+                    <li>Favorite pairs and watchlist-ready account</li>
+                    <li>Advanced charts and daily summaries coming next</li>
+                </ul>
+                <button id="subscribeProBtn" class="btn btn-primary w-100" type="button" onclick="startProSubscription()">Subscribe to Pro</button>
+                <p id="pricingStatus" class="pricing-note">Secure monthly checkout powered by Paystack.</p>
+            </article>
+        </section>
+
+        <section class="dash-card mt-4">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">Feature comparison</span>
+                    <h4 class="dash-card-title">What Pro unlocks</h4>
+                </div>
+                <span class="section-pill">Monthly subscription</span>
+            </div>
+            <div class="pricing-compare">
+                <div><strong>Feature</strong><strong>Free</strong><strong>Pro</strong></div>
+                <div><span>Conversion history</span><span>Latest 5</span><span>Unlimited</span></div>
+                <div><span>Active alerts</span><span>2</span><span>Unlimited</span></div>
+                <div><span>Bitcoin alerts</span><span>Limited</span><span>Unlimited</span></div>
+                <div><span>CSV export</span><span>Locked</span><span>Included</span></div>
+                <div><span>Business records</span><span>Basic</span><span>Report-ready</span></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-card">
+            <p class="site-footer-copy">CurrenSee Pro is built for users who rely on exchange-rate tracking, alerts, and records.</p>
+            <div class="site-footer-links">
+                <a href="index.html">Login</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="backend.js"></script>
+    <script>
+        function setPricingStatus(message, isError = false) {
+            const status = document.getElementById("pricingStatus");
+            if (!status) return;
+
+            status.innerText = message;
+            status.style.color = isError ? "var(--danger)" : "var(--text-muted)";
+        }
+
+        async function startProSubscription() {
+            const button = document.getElementById("subscribeProBtn");
+            button.disabled = true;
+            button.innerText = "Opening checkout...";
+            setPricingStatus("Preparing your Paystack checkout...");
+
+            try {
+                const session = JSON.parse(sessionStorage.getItem("currensee_session") || "null");
+                if (!session) {
+                    window.location.href = "index.html";
+                    return;
+                }
+
+                const data = await CurrenSeeBackend.initializeProPayment();
+                if (!data.authorizationUrl) {
+                    throw new Error("Paystack did not return a checkout link.");
+                }
+
+                window.location.href = data.authorizationUrl;
+            } catch (error) {
+                setPricingStatus(error.message || "Could not start payment. Please try again.", true);
+                button.disabled = false;
+                button.innerText = "Subscribe to Pro";
+            }
+        }
+
+        async function verifyReturnedPayment() {
+            const params = new URLSearchParams(window.location.search);
+            const reference = params.get("reference") || params.get("trxref");
+            const shouldVerify = params.get("payment") === "verify" || Boolean(reference);
+
+            if (!shouldVerify || !reference) return;
+
+            const button = document.getElementById("subscribeProBtn");
+            button.disabled = true;
+            button.innerText = "Verifying payment...";
+            setPricingStatus("Verifying your Paystack payment...");
+
+            try {
+                await CurrenSeeBackend.verifyProPayment(reference);
+                setPricingStatus("Payment verified. Your Pro plan is active.");
+                button.innerText = "Pro Active";
+                setTimeout(() => {
+                    window.location.href = "dashboard.html";
+                }, 1200);
+            } catch (error) {
+                setPricingStatus(error.message || "Could not verify payment. Contact support if you were charged.", true);
+                button.disabled = false;
+                button.innerText = "Subscribe to Pro";
+            }
+        }
+
+        function reflectCurrentPlan() {
+            const session = JSON.parse(sessionStorage.getItem("currensee_session") || "null");
+            if (!session?.subscriptionActive || session?.plan !== "pro") return;
+
+            const expiresAt = session.subscriptionExpiresAt
+                ? new Date(session.subscriptionExpiresAt).toLocaleDateString()
+                : "your renewal date";
+            const button = document.getElementById("subscribeProBtn");
+            button.disabled = true;
+            button.innerText = "Pro Active";
+            setPricingStatus(`Your Pro plan is active until ${expiresAt}.`);
+        }
+
+        reflectCurrentPlan();
+        verifyReturnedPayment();
+    </script>
+</body>
+</html>

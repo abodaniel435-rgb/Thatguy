@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>CurrenSee Offline</title>
+  <style>
+    :root {
+      --bg: #090d13;
+      --panel: rgba(18, 26, 38, 0.88);
+      --panel-border: rgba(98, 218, 255, 0.22);
+      --text: #f5f8ff;
+      --muted: #9fb3c8;
+      --primary: #0a84ff;
+      --cyan: #27d3b4;
+      --gold: #f7b500;
+      --danger: #ff6b6b;
+    }
+
+    [data-theme="light"] {
+      --bg: #f5f8ff;
+      --panel: rgba(255, 255, 255, 0.92);
+      --panel-border: rgba(10, 132, 255, 0.18);
+      --text: #101828;
+      --muted: #667085;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(10, 132, 255, 0.32), transparent 30%),
+        radial-gradient(circle at 82% 78%, rgba(39, 211, 180, 0.24), transparent 32%),
+        linear-gradient(145deg, var(--bg), #0c1826);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+
+    .offline-card {
+      width: min(420px, 100%);
+      border: 1px solid var(--panel-border);
+      border-radius: 28px;
+      background: var(--panel);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.32);
+      padding: 32px 26px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .offline-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px auto auto -80px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(10, 132, 255, 0.18);
+      filter: blur(8px);
+    }
+
+    .brand-mark {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 22px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 72% 22%, rgba(247, 181, 0, 0.95), transparent 16%),
+        linear-gradient(135deg, var(--primary), var(--cyan));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 18px 42px rgba(10, 132, 255, 0.28);
+      position: relative;
+    }
+
+    .brand-mark::before {
+      content: "C";
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 12px solid #fff;
+      border-right-color: transparent;
+      color: transparent;
+      transform: rotate(24deg);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 52px;
+      height: 8px;
+      border-radius: 999px;
+      background: #fff;
+      transform: translate(34px, -18px) rotate(36deg);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      line-height: 1.15;
+    }
+
+    p {
+      margin: 14px auto 0;
+      max-width: 320px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 24px 0;
+    }
+
+    .status-pill {
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      padding: 10px 8px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.3;
+    }
+
+    .status-pill strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.86rem;
+      margin-bottom: 2px;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), #126bff);
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 15px 20px;
+      box-shadow: 0 14px 28px rgba(10, 132, 255, 0.28);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .hint {
+      margin-top: 14px;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 18px;
+      }
+
+      .offline-card {
+        padding: 28px 20px;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: 1.55rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="offline-card">
+    <div class="brand-mark" aria-hidden="true"></div>
+    <p class="eyebrow">CurrenSee</p>
+    <h1>You are offline</h1>
+    <p>Your currency workspace needs an internet connection to load live rates, Bitcoin prices, alerts, and account data.</p>
+
+    <div class="status-row" aria-label="Offline checklist">
+      <div class="status-pill"><strong>Rates</strong>Paused</div>
+      <div class="status-pill"><strong>Alerts</strong>Waiting</div>
+      <div class="status-pill"><strong>Account</strong>Offline</div>
+    </div>
+
+    <button id="retryButton" type="button">Retry Connection</button>
+    <p class="hint">Check Wi-Fi or mobile data, then try again.</p>
+  </main>
+
+  <script>
+    function retryConnection() {
+      if (window.gonative && gonative.webview && gonative.webview.reload) {
+        gonative.webview.reload();
+        return;
+      }
+
+      window.location.reload();
+    }
+
+    function updateTheme() {
+      var isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+    }
+
+    document.getElementById("retryButton").addEventListener("click", retryConnection);
+    updateTheme();
+
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateTheme);
+    }
+  </script>
+</body>
+</html>

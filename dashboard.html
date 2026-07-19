@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrenSee - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260719-money-lens">
+</head>
+<body class="app-body">
+
+    <nav class="app-navbar">
+        <div class="nav-brand">CurrenSee</div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+        </button>
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item active">Dashboard</a>
+                <a href="converter.html" class="nav-item">Converter</a>
+                <a href="money-lens.html" class="nav-item">Money Lens</a>
+                <a href="history.html" class="nav-item">History</a>
+                <a href="alerts.html" class="nav-item">Alerts</a>
+                <a href="news.html" class="nav-item">News</a>
+                <a href="help.html" class="nav-item">Help</a>
+            </div>
+            <div class="nav-user">
+                <span class="plan-badge free-badge" data-plan-name>Free</span>
+                <span id="navUsername">User</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="app-main">
+        <div class="welcome-banner">
+            <div class="welcome-copy">
+                <span class="welcome-kicker">Operations Overview</span>
+                <h2 class="welcome-title">Welcome back, <span id="welcomeName">User</span>!</h2>
+                <p class="welcome-sub">Track conversions, manage alerts, and stay on top of market movement from one clean control center.</p>
+                <div class="welcome-actions">
+                    <a href="converter.html" class="btn btn-primary">New Conversion</a>
+                    <a href="money-lens.html" class="btn btn-outline-primary">Explore Money Lens</a>
+                    <a href="alerts.html" class="btn btn-outline-primary">Manage Alerts</a>
+                    <a href="pricing.html" class="btn btn-outline-primary">Upgrade</a>
+                </div>
+            </div>
+            <div class="welcome-side">
+                <div class="welcome-date" id="welcomeDate"></div>
+                <div class="market-snapshot">
+                    <div class="snapshot-item">
+                        <span>Coverage</span>
+                        <strong>180+ pairs</strong>
+                    </div>
+                    <div class="snapshot-item">
+                        <span>Plan</span>
+                        <strong data-plan-name>Free</strong>
+                    </div>
+                    <div class="snapshot-item">
+                        <span>Alert Limit</span>
+                        <strong><span data-plan-alert-limit>2</span></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <button type="button" class="stat-card stat-card-button" onclick="window.location.href='history.html'">
+                <div class="stat-icon stat-icon-box stat-icon-conversions" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" class="stat-icon-svg">
+                        <path d="M7 7h8M7 12h10M7 17h8" />
+                        <path d="M17 5l3 2-3 2" />
+                        <path d="M17 15l3 2-3 2" />
+                        <path d="M4 7l-2 2 2 2" />
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <p class="stat-label">Total Conversions</p>
+                    <h3 class="stat-value" id="totalConversions">0</h3>
+                </div>
+            </button>
+            <button type="button" class="stat-card stat-card-button" onclick="window.location.href='alerts.html'">
+                <div class="stat-icon stat-icon-box stat-icon-alerts" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" class="stat-icon-svg">
+                        <path d="M12 4a4 4 0 0 1 4 4v2.5c0 .8.24 1.58.68 2.24L18 15H6l1.32-2.26c.44-.66.68-1.44.68-2.24V8a4 4 0 0 1 4-4Z" />
+                        <path d="M10 18a2 2 0 0 0 4 0" />
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <p class="stat-label">Active Alerts</p>
+                    <h3 class="stat-value" id="totalAlerts">0</h3>
+                </div>
+            </button>
+            <button type="button" class="stat-card stat-card-button" onclick="window.location.href='converter.html'">
+                <div class="stat-icon stat-icon-box stat-icon-default" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" class="stat-icon-svg">
+                        <circle cx="12" cy="12" r="7" />
+                        <path d="M12 5v14M8.5 8.5c.8-.7 2.02-1.17 3.5-1.17 2.49 0 4.5 1.34 4.5 3s-2.01 3-4.5 3-4.5 1.34-4.5 3c0 .48.17.94.47 1.33" />
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <p class="stat-label">Default Currency</p>
+                    <h3 class="stat-value" id="defaultCurrency">USD</h3>
+                </div>
+            </button>
+            <button type="button" class="stat-card stat-card-button" onclick="window.location.href='news.html'">
+                <div class="stat-icon stat-icon-box stat-icon-market" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" class="stat-icon-svg">
+                        <path d="M4 16l4-4 3 3 6-7 3 3" />
+                        <path d="M20 8v5h-5" />
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <p class="stat-label">Market Status</p>
+                    <h3 class="stat-value" style="color: var(--success)">Live</h3>
+                </div>
+            </button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dash-card dash-card-feature">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Workflow</span>
+                        <h4 class="dash-card-title">Quick Convert</h4>
+                    </div>
+                    <span class="section-pill">Fast lane</span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label dash-label">Amount</label>
+                    <input type="number" id="quickAmount" class="form-control dash-input" placeholder="Enter amount" value="1">
+                </div>
+                <div class="search-pair-grid mb-3">
+                    <div>
+                        <label class="form-label dash-label">Search From Currency or Country</label>
+                        <input type="text" id="quickFromSearch" class="form-control dash-input" placeholder="Search by code, Bitcoin, currency, or country">
+                        <div id="quickFromSuggestions" class="currency-suggestions d-none"></div>
+                    </div>
+                    <div>
+                        <label class="form-label dash-label">Search To Currency or Country</label>
+                        <input type="text" id="quickToSearch" class="form-control dash-input" placeholder="Search by code, Bitcoin, currency, or country">
+                        <div id="quickToSuggestions" class="currency-suggestions d-none"></div>
+                    </div>
+                </div>
+                <div class="d-flex gap-2 mb-3">
+                    <div class="w-50">
+                        <label class="form-label dash-label">From</label>
+                        <select id="quickFrom" class="form-select dash-input"></select>
+                    </div>
+                    <div class="w-50">
+                        <label class="form-label dash-label">To</label>
+                        <select id="quickTo" class="form-select dash-input"></select>
+                    </div>
+                </div>
+                <button class="btn btn-primary w-100 mb-3" onclick="quickConvert()">Convert</button>
+                <div id="quickResult" class="quick-result d-none"></div>
+            </div>
+
+            <div class="dash-card">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Activity</span>
+                        <h4 class="dash-card-title">Recent Conversions</h4>
+                    </div>
+                    <a href="history.html" class="section-link">Open history</a>
+                </div>
+                <div id="recentHistory">
+                    <p class="text-muted text-center mt-3">No conversions yet.</p>
+                </div>
+                <a href="history.html" class="btn btn-outline-primary w-100 mt-3">View All History</a>
+            </div>
+        </div>
+
+        <div class="dash-card mt-4">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">Market Watch</span>
+                    <h4 class="dash-card-title">Popular Exchange Rates <span class="live-badge">LIVE</span></h4>
+                </div>
+                <span class="section-link">Updated in real time</span>
+            </div>
+            <div id="popularRates" class="rates-grid">
+                <p class="text-muted">Loading rates...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-card">
+            <p class="site-footer-copy">CurrenSee dashboard for live conversion workflow, alerts, and market visibility.</p>
+            <div class="site-footer-links">
+                <a href="about.html">About</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="backend.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

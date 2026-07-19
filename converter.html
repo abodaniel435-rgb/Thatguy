@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrenSee - Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css?v=20260719-money-lens">
+</head>
+<body class="app-body">
+
+    <nav class="app-navbar">
+        <div class="nav-brand">CurrenSee</div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+        </button>
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+                <a href="converter.html" class="nav-item active">Converter</a>
+                <a href="money-lens.html" class="nav-item">Money Lens</a>
+                <a href="history.html" class="nav-item">History</a>
+                <a href="alerts.html" class="nav-item">Alerts</a>
+                <a href="news.html" class="nav-item">News</a>
+                <a href="help.html" class="nav-item">Help</a>
+            </div>
+            <div class="nav-user">
+                <span class="plan-badge free-badge" data-plan-name>Free</span>
+                <span id="navUsername">User</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="app-main">
+        <h2 class="page-title">Currency and Bitcoin Converter</h2>
+        <p class="page-sub">Convert fiat currencies, Bitcoin to currency, and currency to Bitcoin with live market pricing.</p>
+
+        <div class="converter-grid">
+            <div class="dash-card">
+                <h4 class="dash-card-title">Convert Currency</h4>
+
+                <div class="mb-3">
+                    <label class="form-label dash-label">Amount</label>
+                    <input type="number" id="convAmount" class="form-control dash-input" placeholder="Enter amount" value="1" min="0">
+                </div>
+
+                <div class="search-pair-grid mb-3">
+                    <div>
+                        <label class="form-label dash-label">Search From Currency, Bitcoin, or Country</label>
+                        <input type="text" id="fromCurrencySearch" class="form-control dash-input" placeholder="Search by code, Bitcoin, currency, or country">
+                        <div id="fromCurrencySuggestions" class="currency-suggestions d-none"></div>
+                    </div>
+                    <div>
+                        <label class="form-label dash-label">Search To Currency, Bitcoin, or Country</label>
+                        <input type="text" id="toCurrencySearch" class="form-control dash-input" placeholder="Search by code, Bitcoin, currency, or country">
+                        <div id="toCurrencySuggestions" class="currency-suggestions d-none"></div>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 align-items-end mb-3 converter-selects">
+                    <div class="flex-fill">
+                        <label class="form-label dash-label">From Currency</label>
+                        <select id="convFrom" class="form-select dash-input"></select>
+                    </div>
+
+                    <button class="btn-swap" onclick="swapCurrencies()" title="Swap">Swap</button>
+
+                    <div class="flex-fill">
+                        <label class="form-label dash-label">To Currency</label>
+                        <select id="convTo" class="form-select dash-input"></select>
+                    </div>
+                </div>
+
+                <div class="bitcoin-transfer-tools mb-3" aria-label="Bitcoin transfer quote shortcuts">
+                    <button type="button" onclick="setBitcoinPair('BTC', 'USD')">BTC to USD</button>
+                    <button type="button" onclick="setBitcoinPair('USD', 'BTC')">USD to BTC</button>
+                    <button type="button" onclick="setBitcoinPair('BTC', 'NGN')">BTC to NGN</button>
+                    <button type="button" onclick="setBitcoinPair('NGN', 'BTC')">NGN to BTC</button>
+                </div>
+
+                <button class="btn btn-primary w-100 mb-3" onclick="convertCurrency()">Convert Now</button>
+
+                <div id="convResult" class="conv-result d-none">
+                    <div class="result-main" id="resultMain"></div>
+                    <div class="result-rate" id="resultRate"></div>
+                    <div class="result-time" id="resultTime"></div>
+                </div>
+            </div>
+
+            <div class="dash-card">
+                <h4 class="dash-card-title">Rate Information</h4>
+                <div id="rateInfo">
+                    <p class="text-muted text-center mt-4">Convert a currency or Bitcoin pair to see rate details</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-card mt-4">
+            <h4 class="dash-card-title">Exchange Rate Trend <span style="font-size:0.75rem; color:var(--text-muted); font-weight:400">(Simulated 30-day trend)</span></h4>
+            <canvas id="rateChart" height="100"></canvas>
+        </div>
+
+        <div class="dash-card mt-4">
+            <h4 class="dash-card-title">All Supported Currencies and Bitcoin</h4>
+            <input type="text" id="currencySearch" class="form-control dash-input mb-3" placeholder="Search a currency code, Bitcoin, currency name, or country">
+            <div id="currencyList" class="currency-grid"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-card">
+            <p class="site-footer-copy">CurrenSee converter for live FX checks, Bitcoin transfer quotes, supported currency browsing, and quick workflow access.</p>
+            <div class="site-footer-links">
+                <a href="about.html">About</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="backend.js"></script>
+    <script src="script.js"></script>
+    <script src="converter.js"></script>
+</body>
+</html>

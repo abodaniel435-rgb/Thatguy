@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrenSee - Help</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260719-money-lens">
+</head>
+<body class="app-body">
+
+    <nav class="app-navbar">
+        <div class="nav-brand">CurrenSee</div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+        </button>
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+                <a href="converter.html" class="nav-item">Converter</a>
+                <a href="money-lens.html" class="nav-item">Money Lens</a>
+                <a href="history.html" class="nav-item">History</a>
+                <a href="alerts.html" class="nav-item">Alerts</a>
+                <a href="news.html" class="nav-item">News</a>
+                <a href="help.html" class="nav-item active">Help</a>
+            </div>
+            <div class="nav-user">
+                <span class="plan-badge free-badge" data-plan-name>Free</span>
+                <span id="navUsername">User</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="app-main">
+        <h2 class="page-title">Help Center</h2>
+        <p class="page-sub">Find guides, support details, and practical answers about the current CurrenSee product build.</p>
+
+        <div class="dash-card mb-4">
+            <div class="help-search-wrap">
+                <span class="help-search-icon">?</span>
+                <input type="text" id="helpSearch" class="form-control dash-input help-search" placeholder="Search for help topics...">
+            </div>
+        </div>
+
+        <div class="quick-links-grid mb-4">
+            <a href="#faq" class="quick-link-card">
+                <span class="quick-link-icon quick-link-faq" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9.2 9a2.8 2.8 0 1 1 5 1.7c-.7.7-1.5 1.2-2.1 1.8-.5.4-.8.9-.8 1.5v.5" />
+                        <circle cx="12" cy="17.5" r="1" />
+                        <path d="M12 3.5c4.7 0 8.5 3.4 8.5 7.7S16.7 19 12 19c-.8 0-1.5-.1-2.2-.3L5 20l1.2-3.6C4.8 15.1 3.5 13.2 3.5 11.2 3.5 6.9 7.3 3.5 12 3.5Z" />
+                    </svg>
+                </span>
+                <p>Answers</p>
+            </a>
+            <a href="#guides" class="quick-link-card">
+                <span class="quick-link-icon quick-link-guides" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H19v15.5a2.5 2.5 0 0 0-2.5-2.5H5Z" />
+                        <path d="M5 5.5v13A2.5 2.5 0 0 0 7.5 21H19" />
+                        <path d="M9 7.5h6M9 11h6M9 14.5h4" />
+                    </svg>
+                </span>
+                <p>User Guides</p>
+            </a>
+            <a href="#contact-support" class="quick-link-card">
+                <span class="quick-link-icon quick-link-support" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M8 11a4 4 0 1 1 8 0v5a2 2 0 0 1-2 2h-1.5" />
+                        <path d="M8 16H6a2 2 0 0 1-2-2v-2a8 8 0 1 1 16 0v2a2 2 0 0 1-2 2h-2" />
+                        <path d="M12.5 18H11a1.5 1.5 0 0 0 0 3h1.5a1.5 1.5 0 0 0 0-3Z" />
+                    </svg>
+                </span>
+                <p>Contact Support</p>
+            </a>
+            <a href="#feedback" class="quick-link-card">
+                <span class="quick-link-icon quick-link-feedback" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 19l-6 3 1.2-6.8A7.5 7.5 0 1 1 12 19Z" />
+                        <path d="M9 10.5h6M9 13.5h4" />
+                    </svg>
+                </span>
+                <p>Feedback</p>
+            </a>
+        </div>
+
+        <div class="dash-card mb-4" id="faq">
+            <h4 class="dash-card-title">Frequently Asked Questions</h4>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item help-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button help-acc-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            How do I convert a currency?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body help-acc-body">
+                            Open the Converter page, choose your source and target currencies, enter the amount, and click Convert Now.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item help-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button help-acc-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Are the exchange rates live?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body help-acc-body">
+                            The current app uses live third-party rate data in the browser. Reliability depends on the external provider and the user's connection.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item help-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button help-acc-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            How do alerts work today?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body help-acc-body">
+                            Alerts are created inside the app and checked while the product is in use. A full production rollout would move alerts to a background service with email or push delivery.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item help-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button help-acc-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Where is data stored in this build?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body help-acc-body">
+                            This current build stores user data in the browser. That is suitable for demos and prototyping, but a commercial deployment would move auth, sessions, alerts, and history to a backend.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item help-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button help-acc-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            Is the reset password flow production-ready?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body help-acc-body">
+                            Not yet. It is a local recovery flow for the current build. A production setup would send secure email reset links and verify identity server-side.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-card mb-4" id="guides">
+            <h4 class="dash-card-title">User Guides</h4>
+            <div class="guides-grid">
+                <div class="guide-card">
+                    <div class="guide-icon guide-icon-start" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 3v18M3 12h18" />
+                        </svg>
+                    </div>
+                    <h5>Getting Started</h5>
+                    <ol class="guide-steps">
+                        <li>Create an account on the login page.</li>
+                        <li>Sign in to access your dashboard.</li>
+                        <li>Use the converter, alerts, history, and news workspace.</li>
+                    </ol>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-icon guide-icon-convert" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 7h8M7 17h10" />
+                            <path d="M15 5l3 2-3 2M9 15l-3 2 3 2" />
+                        </svg>
+                    </div>
+                    <h5>Using the Converter</h5>
+                    <ol class="guide-steps">
+                        <li>Search or select the source currency.</li>
+                        <li>Choose the target currency.</li>
+                        <li>Enter an amount and convert.</li>
+                        <li>Review the result and saved history entry.</li>
+                    </ol>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-icon guide-icon-alert" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 4a4 4 0 0 1 4 4v2.5c0 .8.24 1.58.68 2.24L18 15H6l1.32-2.26c.44-.66.68-1.44.68-2.24V8a4 4 0 0 1 4-4Z" />
+                            <path d="M10 18a2 2 0 0 0 4 0" />
+                        </svg>
+                    </div>
+                    <h5>Setting Alerts</h5>
+                    <ol class="guide-steps">
+                        <li>Go to Alerts.</li>
+                        <li>Choose the pair and target rate.</li>
+                        <li>Save the alert and monitor it from the app.</li>
+                    </ol>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-icon guide-icon-news" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M5 6.5h11a2 2 0 0 1 2 2V17H7a2 2 0 0 1-2-2V6.5Z" />
+                            <path d="M7 17V8.5M10 10.5h5M10 13.5h5" />
+                            <path d="M18 8.5h1a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H9" />
+                        </svg>
+                    </div>
+                    <h5>Reading Market Context</h5>
+                    <ol class="guide-steps">
+                        <li>Open News.</li>
+                        <li>Review the live market tiles.</li>
+                        <li>Filter by topic for specific news coverage.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-card mb-4" id="contact-support">
+            <h4 class="dash-card-title">Contact Support</h4>
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <div class="support-icon support-icon-email" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 7h16v10H4z" />
+                                <path d="m5 8 7 5 7-5" />
+                            </svg>
+                        </div>
+                        <h6>Email Support</h6>
+                        <p>abodaniel435@gmail.com</p>
+                        <small>Response target: 24 hours</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <div class="support-icon support-icon-product" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3l7 4v10l-7 4-7-4V7l7-4Z" />
+                                <path d="M12 8v8M8.5 10l7 4" />
+                            </svg>
+                        </div>
+                        <h6>Product Requests</h6>
+                        <p>abodaniel435@gmail.com</p>
+                        <small>For feature and roadmap requests</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card">
+                        <div class="support-icon support-icon-sales" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M5 18h14" />
+                                <path d="M7 18V9l5-4 5 4v9" />
+                                <path d="M10 13h4" />
+                            </svg>
+                        </div>
+                        <h6>Sales Contact</h6>
+                        <p>abodaniel435@gmail.com</p>
+                        <small>For demos and commercial rollout</small>
+                    </div>
+                </div>
+            </div>
+
+            <h5 style="color:var(--text); margin-bottom:16px">Send a Support Request</h5>
+            <form id="supportForm">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label dash-label">Your Name</label>
+                        <input type="text" id="supportName" class="form-control dash-input" placeholder="John Doe" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label dash-label">Email Address</label>
+                        <input type="email" id="supportEmail" class="form-control dash-input" placeholder="you@email.com" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label dash-label">Issue Category</label>
+                        <select id="supportCategory" class="form-select dash-input">
+                            <option>Account and Access</option>
+                            <option>Currency Conversion</option>
+                            <option>Rate Alerts</option>
+                            <option>News and Market Data</option>
+                            <option>Technical Issue</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label dash-label">Message</label>
+                        <textarea id="supportMessage" class="form-control dash-input" rows="4" placeholder="Describe your issue..." required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <div id="supportMsg" class="d-none mb-2"></div>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="dash-card" id="feedback">
+            <h4 class="dash-card-title">Product Feedback</h4>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px">Share what is working well and what should improve before commercial launch.</p>
+
+            <div class="rating-row mb-4">
+                <p style="color:var(--text); margin-bottom:10px">How would you rate CurrenSee?</p>
+                <div class="star-rating" id="starRating">
+                    <span class="star" data-value="1" aria-label="1 star">★</span>
+                    <span class="star" data-value="2" aria-label="2 stars">★</span>
+                    <span class="star" data-value="3" aria-label="3 stars">★</span>
+                    <span class="star" data-value="4" aria-label="4 stars">★</span>
+                    <span class="star" data-value="5" aria-label="5 stars">★</span>
+                </div>
+                <p id="ratingText" style="color:var(--text-muted); font-size:0.82rem; margin-top:6px"></p>
+            </div>
+
+            <form id="feedbackForm">
+                <div class="mb-3">
+                    <label class="form-label dash-label">What do you like most?</label>
+                    <textarea id="feedbackLikes" class="form-control dash-input" rows="2" placeholder="For example, conversion workflow or alert setup" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label dash-label">What should improve?</label>
+                    <textarea id="feedbackImprovements" class="form-control dash-input" rows="2" placeholder="For example, stronger notifications or backend-backed security" required></textarea>
+                </div>
+                <div id="feedbackMsg" class="d-none mb-2"></div>
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-card">
+            <p class="site-footer-copy">CurrenSee support and product documentation for the current release and commercial roadmap.</p>
+            <div class="site-footer-links">
+                <a href="about.html">About</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="backend.js"></script>
+    <script src="script.js"></script>
+    <script src="help.js?v=20260516"></script>
+</body>
+</html>

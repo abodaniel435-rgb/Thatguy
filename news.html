@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrenSee - News</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260719-money-lens">
+</head>
+<body class="app-body">
+
+    <nav class="app-navbar">
+        <div class="nav-brand">CurrenSee</div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+        </button>
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+                <a href="converter.html" class="nav-item">Converter</a>
+                <a href="money-lens.html" class="nav-item">Money Lens</a>
+                <a href="history.html" class="nav-item">History</a>
+                <a href="alerts.html" class="nav-item">Alerts</a>
+                <a href="news.html" class="nav-item active">News</a>
+                <a href="help.html" class="nav-item">Help</a>
+            </div>
+            <div class="nav-user">
+                <span class="plan-badge free-badge" data-plan-name>Free</span>
+                <span id="navUsername">User</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="app-main">
+        <h2 class="page-title">Currency News and Market Trends</h2>
+        <p class="page-sub">Stay informed with live market headlines, top currency pairs, and practical context for major moves.</p>
+
+        <div class="dash-card mb-4">
+            <h4 class="dash-card-title">Live Market Overview <span class="live-badge">Live</span></h4>
+            <div id="marketOverview" class="rates-grid">
+                <p class="text-muted">Loading market data...</p>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="trend-card trend-up">
+                    <div class="trend-header">
+                        <span class="trend-pair">USD/NGN</span>
+                        <span class="trend-arrow">Up</span>
+                    </div>
+                    <p class="trend-value" id="trendUSDNGN">Loading...</p>
+                    <p class="trend-label">US Dollar to Nigerian Naira</p>
+                    <p class="trend-change up" id="changeUSDNGN">+0.00%</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="trend-card trend-neutral">
+                    <div class="trend-header">
+                        <span class="trend-pair">EUR/USD</span>
+                        <span class="trend-arrow">Flat</span>
+                    </div>
+                    <p class="trend-value" id="trendEURUSD">Loading...</p>
+                    <p class="trend-label">Euro to US Dollar</p>
+                    <p class="trend-change neutral" id="changeEURUSD">0.00%</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="trend-card trend-down">
+                    <div class="trend-header">
+                        <span class="trend-pair">GBP/USD</span>
+                        <span class="trend-arrow">Down</span>
+                    </div>
+                    <p class="trend-value" id="trendGBPUSD">Loading...</p>
+                    <p class="trend-label">British Pound to US Dollar</p>
+                    <p class="trend-change down" id="changeGBPUSD">-0.00%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-card mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
+                <h4 class="dash-card-title mb-0">Latest Currency News</h4>
+                <select id="newsFilter" class="form-select dash-input" style="max-width:180px">
+                    <option value="all">All Topics</option>
+                    <option value="usd">USD News</option>
+                    <option value="eur">EUR News</option>
+                    <option value="crypto">Crypto</option>
+                    <option value="africa">Africa Markets</option>
+                </select>
+            </div>
+            <div id="newsGrid" class="news-grid"></div>
+        </div>
+
+        <div class="dash-card">
+            <h4 class="dash-card-title">Market Analysis Snapshot</h4>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h5>USD Outlook</h5>
+                    <p>The US Dollar still responds strongly to inflation data, employment numbers, and Federal Reserve guidance. Short-term strength remains data-dependent.</p>
+                    <span class="analysis-tag bullish">Bullish</span>
+                </div>
+                <div class="analysis-card">
+                    <h5>EUR Outlook</h5>
+                    <p>The Euro is balancing central bank policy expectations with uneven growth across the Eurozone. Near-term direction remains mixed.</p>
+                    <span class="analysis-tag neutral">Neutral</span>
+                </div>
+                <div class="analysis-card">
+                    <h5>NGN Outlook</h5>
+                    <p>The Naira remains sensitive to FX policy reform, energy markets, and dollar liquidity. Volatility should still be expected.</p>
+                    <span class="analysis-tag bearish">Volatile</span>
+                </div>
+                <div class="analysis-card">
+                    <h5>GBP Outlook</h5>
+                    <p>The British Pound continues to react to inflation pressure, growth forecasts, and Bank of England rate positioning.</p>
+                    <span class="analysis-tag bullish">Watchlist</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-card">
+            <p class="site-footer-copy">CurrenSee market workspace. Built for monitoring, conversion workflow, and professional FX visibility.</p>
+            <div class="site-footer-links">
+                <a href="about.html">About</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="backend.js"></script>
+    <script src="script.js"></script>
+    <script src="news.js"></script>
+</body>
+</html>

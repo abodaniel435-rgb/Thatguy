@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrenSee - Money Lens</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260719-money-lens">
+</head>
+<body class="app-body money-lens-body">
+    <nav class="app-navbar">
+        <div class="nav-brand">CurrenSee</div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-line"></span><span class="nav-toggle-line"></span><span class="nav-toggle-line"></span>
+        </button>
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+                <a href="converter.html" class="nav-item">Converter</a>
+                <a href="money-lens.html" class="nav-item active">Money Lens</a>
+                <a href="history.html" class="nav-item">History</a>
+                <a href="alerts.html" class="nav-item">Alerts</a>
+                <a href="news.html" class="nav-item">News</a>
+                <a href="help.html" class="nav-item">Help</a>
+            </div>
+            <div class="nav-user">
+                <span class="plan-badge free-badge" data-plan-name>Free</span>
+                <span id="navUsername">User</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="app-main money-lens-main">
+        <section class="lens-hero" aria-labelledby="lensTitle">
+            <div class="lens-hero-copy">
+                <span class="lens-kicker"><span class="lens-kicker-dot"></span> Live global spending power</span>
+                <h1 id="lensTitle">See what your money <em>becomes</em> around the world.</h1>
+                <p>Money Lens translates a live currency conversion into real-world moments: a meal in Lagos, a hotel night in Dubai, a Tokyo train ride, and more.</p>
+                <div class="lens-control-panel">
+                    <label class="lens-field"><span>Your amount</span><input id="lensAmount" type="number" min="1" value="1000" inputmode="decimal" aria-label="Amount to explore"></label>
+                    <label class="lens-field"><span>Starting currency</span><select id="lensCurrency" aria-label="Starting currency"></select></label>
+                    <button id="lensLaunch" type="button" class="lens-launch"><span>Show my money's power</span><i aria-hidden="true">✦</i></button>
+                </div>
+                <p id="lensStatus" class="lens-status" role="status">Choose an amount, then send it around the world.</p>
+            </div>
+            <div class="lens-orbit" aria-label="Animated global money journey">
+                <div class="lens-orbit-grid"></div>
+                <div class="lens-orbit-ring ring-one"></div><div class="lens-orbit-ring ring-two"></div><div class="lens-orbit-ring ring-three"></div>
+                <div class="lens-core"><span id="lensCoreAmount">1,000</span><small id="lensCoreCurrency">USD</small></div>
+                <span class="lens-route route-one"></span><span class="lens-route route-two"></span><span class="lens-route route-three"></span>
+                <button class="lens-node node-lagos" type="button" data-city="Lagos"><span>✦</span>Lagos</button>
+                <button class="lens-node node-dubai" type="button" data-city="Dubai"><span>✦</span>Dubai</button>
+                <button class="lens-node node-london" type="button" data-city="London"><span>✦</span>London</button>
+                <button class="lens-node node-tokyo" type="button" data-city="Tokyo"><span>✦</span>Tokyo</button>
+                <button class="lens-node node-new-york" type="button" data-city="New York"><span>✦</span>New York</button>
+                <div class="lens-orbit-caption">Tap a glowing destination to focus it</div>
+            </div>
+        </section>
+
+        <section class="lens-reveal" aria-live="polite">
+            <div class="lens-reveal-head">
+                <div><span class="section-kicker">Your money, reimagined</span><h2 id="lensRevealTitle">A world of possibilities is waiting.</h2></div>
+                <div class="lens-live-rate"><span></span><strong id="lensRateText">Live conversion ready</strong></div>
+            </div>
+            <div id="lensDestinations" class="lens-destination-grid"></div>
+        </section>
+
+        <section class="lens-spotlight" aria-labelledby="spotlightTitle">
+            <div class="lens-spotlight-glow"></div>
+            <div class="lens-spotlight-copy"><span class="section-kicker">The eye-opening comparison</span><h2 id="spotlightTitle">Your strongest spending-power destination</h2><p id="lensSpotlightText">Run Money Lens to discover where your money goes furthest today.</p></div>
+            <div id="lensSpotlightMetric" class="lens-spotlight-metric"><span>Ready</span><strong>✦</strong></div>
+        </section>
+
+        <section class="lens-disclaimer">Cost snapshots are indicative local averages for comparison, not travel pricing or financial advice. Currency conversions use CurrenSee's live rate source.</section>
+    </main>
+
+    <footer class="site-footer"><div class="site-footer-card"><p class="site-footer-copy">CurrenSee Money Lens turns exchange rates into human, global context.</p><div class="site-footer-links"><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="backend.js"></script>
+    <script src="script.js"></script>
+    <script src="money-lens.js"></script>
+</body>
+</html>

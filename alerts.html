@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrenSee - Alerts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260719-money-lens">
+</head>
+<body class="app-body">
+
+    <nav class="app-navbar">
+        <div class="nav-brand">CurrenSee</div>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+        </button>
+        <div class="nav-menu">
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+                <a href="converter.html" class="nav-item">Converter</a>
+                <a href="money-lens.html" class="nav-item">Money Lens</a>
+                <a href="history.html" class="nav-item">History</a>
+                <a href="alerts.html" class="nav-item active">Alerts</a>
+                <a href="news.html" class="nav-item">News</a>
+                <a href="help.html" class="nav-item">Help</a>
+            </div>
+            <div class="nav-user">
+                <span class="plan-badge free-badge" data-plan-name>Free</span>
+                <span id="navUsername">User</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="app-main">
+        <h2 class="page-title">Rate Alerts</h2>
+        <p class="page-sub">Get notified when exchange rates hit your target</p>
+        <div class="notification-card mb-4">
+            <div>
+                <strong>Alert notifications</strong>
+                <span id="notificationStatus">Checking notification support...</span>
+            </div>
+            <button id="enableNotificationsBtn" class="btn btn-outline-primary btn-sm" type="button">Enable notifications</button>
+        </div>
+        <div id="alertPlanNotice" class="pro-notice mb-4 d-none"></div>
+
+        <div class="converter-grid">
+            <div class="dash-card">
+                <h4 class="dash-card-title">Create New Alert</h4>
+
+                <div class="mb-3">
+                    <label class="form-label dash-label">From Currency</label>
+                    <select id="alertFrom" class="form-select dash-input"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label dash-label">To Currency</label>
+                    <select id="alertTo" class="form-select dash-input"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label dash-label">Target Rate</label>
+                    <input type="number" id="alertRate" class="form-control dash-input" placeholder="e.g. 1500" step="0.0001" min="0">
+                    <small class="text-muted">The app will automatically alert you when the rate rises to or drops to this value.</small>
+                </div>
+
+                <button class="btn btn-primary w-100" onclick="createAlert()">Set Alert</button>
+                <div id="alertMsg" class="mt-3 d-none"></div>
+            </div>
+
+            <div class="dash-card">
+                <h4 class="dash-card-title">Current Rate Check</h4>
+                <p class="text-muted" style="font-size:0.85rem">Check the live rate for your selected pair before setting an alert.</p>
+                <button class="btn btn-outline-primary w-100 mb-3" onclick="checkCurrentRate()">Check Live Rate</button>
+                <div id="currentRateDisplay" class="d-none">
+                    <div class="rate-display-box">
+                        <p id="rateDisplayText"></p>
+                    </div>
+                </div>
+
+                <hr style="border-color:var(--border); margin: 20px 0">
+
+                <h5 style="color:var(--text); font-size:0.95rem; margin-bottom:12px">Alert Summary</h5>
+                <div class="alert-summary">
+                    <div class="summary-item"><span>Active Alerts</span><strong id="summaryActive">0</strong></div>
+                    <div class="summary-item"><span>Triggered Alerts</span><strong id="summaryTriggered" style="color:var(--success)">0</strong></div>
+                    <div class="summary-item"><span>Total Created</span><strong id="summaryTotal">0</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-card mt-4">
+            <h4 class="dash-card-title">My Alerts</h4>
+            <div id="alertsList"></div>
+            <div id="alertsEmpty" class="text-center py-5 d-none">
+                <p class="text-muted">No alerts set yet. Create one above.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-card">
+            <p class="site-footer-copy">CurrenSee alerts workspace for target monitoring and rate-check workflow.</p>
+            <div class="site-footer-links">
+                <a href="about.html">About</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="backend.js"></script>
+    <script src="script.js"></script>
+    <script src="alerts.js?v=20260618"></script>
+</body>
+</html>
